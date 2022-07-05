@@ -12,7 +12,7 @@ const fs = require("fs");
 
 afterAll(() => {
     try {
-        fs.unlinkSync("./serviceAccountJson.json");
+        fs.unlinkSync("./serviceAccount.json");
     } catch(e) {
         console.log("Error in test teardown: ", e.message);
     }
@@ -60,5 +60,7 @@ test("Test that provided json is set correctly as environment variables", () => 
     mockCore.exportVariable = actualCore.exportVariable;
     getAndValidateInputs();
     setGoogleCredentials();
-    expect(process.env["GOOGLE_APPLICATION_CREDENTIALS"]).toBe(jsonString);
+    fs.readFile(process.env["GOOGLE_APPLICATION_CREDENTIALS"], 'utf8',(err, data) => {
+        expect(data).toBe(jsonString);
+    });
 })
