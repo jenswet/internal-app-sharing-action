@@ -3,7 +3,7 @@ description: 'Upload aab/apk to Internal App Sharing on Play Console'
 inputs:
   serviceAccountJsonPlainText:
     description: 'The service account json plain text private key file to authorize the upload request'
-    required: true 
+    required: true
   packageName:
     description: 'Package name of the application'
     required: true
@@ -19,11 +19,11 @@ outputs:
   certificateFingerprint:
     description: 'The SHA256 fingerprint of the certificate used to signed the generated artifact.'
   sha256:
-    description: 'The SHA-256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command.'       
+    description: 'The SHA-256 hash of the artifact represented as a lowercase hexadecimal number, matching the output of the sha256sum command.'
 runs:
   using: 'node16'
   main: 'dist/index/index.js'
   post: 'dist/cleanup/index.js'
 branding:
-  icon: 'upload-cloud'  
+  icon: 'upload-cloud'
   color: 'green'
